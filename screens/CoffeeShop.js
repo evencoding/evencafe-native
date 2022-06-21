@@ -1,17 +1,47 @@
+import { gql, useQuery } from "@apollo/client";
 import React from "react";
-import { View, Text } from "react-native";
+import ScreenLayout from "../components/ScreenLayout";
+import ShopDetail from "../components/ShopDetail";
 
-export default function CoffeeShop({ navigation }) {
+const SEE_COFFEESHOP_QUERY = gql`
+  query seeCoffeeShop($id: Int!) {
+    seeCoffeeShop(id: $id) {
+      id
+      name
+      bio
+      avatar
+      adress
+      latitude
+      longitude
+      followers
+      isFollowing
+      user {
+        username
+        avatarURL
+      }
+      photos {
+        id
+        url
+      }
+      categories {
+        id
+        name
+      }
+      createdAt
+    }
+  }
+`;
+
+export default function CoffeeShop({ navigation, route }) {
+  const {
+    params: { id },
+  } = route;
+  const { data } = useQuery(SEE_COFFEESHOP_QUERY, {
+    variables: { id },
+  });
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "black",
-      }}
-    >
-      <Text style={{ color: "white" }}>CoffeeShop</Text>
-    </View>
+    <ScreenLayout>
+      <ShopDetail data={data?.seeCoffeeShop} />
+    </ScreenLayout>
   );
 }

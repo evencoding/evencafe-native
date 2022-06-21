@@ -28,3 +28,6 @@ export default function Logo() {
     </SLogo>
   );
 }
+{
+  /* <AuthButton text="Log Out" disabled={false} onPress={logUserOut} /> */
+}

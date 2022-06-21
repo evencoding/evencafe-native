@@ -5,6 +5,7 @@ import {
   makeVar,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
+import { offsetLimitPagination } from "@apollo/client/utilities";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const isLoggedInVar = makeVar(false);
@@ -24,7 +25,8 @@ export const logUserOut = async (token) => {
 };
 
 const httpLink = createHttpLink({
-  uri: "https://huge-phones-dance-115-124-143-123.loca.lt/graphql",
+  // uri: "https://evencafe-backend.herokuapp.com/graphql",
+  uri: "http://localhost:4400/graphql",
 });
 const authLink = setContext((_, { headers }) => {
   return {
@@ -37,7 +39,15 @@ const authLink = setContext((_, { headers }) => {
 
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache({
+    typePolicies: {
+      Query: {
+        fields: {
+          seeCoffeeShops: offsetLimitPagination(),
+        },
+      },
+    },
+  }),
 });
 
 export default client;
