@@ -7,6 +7,7 @@ import CoffeeShop from "../screens/CoffeeShop";
 import Home from "../screens/Home";
 import Me from "../screens/Me";
 import Profile from "../screens/Profile";
+import Search from "../screens/Search";
 import LoggedOutNav from "./LoggedOutNav";
 
 const Stack = createNativeStackNavigator();
@@ -41,6 +42,16 @@ export default function StackNavFactory({ screenName }) {
             headerTitle: () => <Logo />,
           }}
           component={Home}
+        />
+      ) : null}
+      {screenName === "Search" ? (
+        <Stack.Screen
+          name={"Search"}
+          component={Search}
+          options={{
+            headerShown: true,
+            headerTitle: () => <Logo />,
+          }}
         />
       ) : null}
       {myProfile()}

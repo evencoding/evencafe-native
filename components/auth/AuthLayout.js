@@ -7,6 +7,7 @@ import {
 } from "react-native";
 import styled from "styled-components/native";
 import { colors } from "../../colors";
+import DismissKeyboard from "../DismissKeyboard";
 import Logo from "../Logo";
 
 const Container = styled.View`
@@ -18,15 +19,8 @@ const Container = styled.View`
 `;
 
 export default function AuthLayout({ children }) {
-  const dismissKeyboard = () => {
-    Keyboard.dismiss();
-  };
   return (
-    <TouchableWithoutFeedback
-      style={{ flex: 1 }}
-      onPress={dismissKeyboard}
-      disabled={Platform.OS === "web"}
-    >
+    <DismissKeyboard>
       <Container>
         <KeyboardAvoidingView
           style={{ width: "100%" }}
@@ -37,6 +31,6 @@ export default function AuthLayout({ children }) {
           {children}
         </KeyboardAvoidingView>
       </Container>
-    </TouchableWithoutFeedback>
+    </DismissKeyboard>
   );
 }

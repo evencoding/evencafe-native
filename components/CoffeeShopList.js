@@ -43,14 +43,10 @@ const CategoryName = styled.Text`
 
 export default function CoffeeShopList({
   id,
-  adress,
   avatar,
-  bio,
   categories,
-  followers,
   name,
   isFollowing,
-  user,
 }) {
   const navigation = useNavigation();
   const { width, height } = useWindowDimensions();
@@ -100,20 +96,13 @@ export default function CoffeeShopList({
 
 CoffeeShopList.propTypes = {
   id: PropTypes.number.isRequired,
-  adress: PropTypes.string,
   avatar: PropTypes.string,
   name: PropTypes.string.isRequired,
-  user: PropTypes.shape({
-    avatarURL: PropTypes.string,
-    username: PropTypes.string.isRequired,
-  }),
   categories: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
     })
   ),
-  bio: PropTypes.string,
-  followers: PropTypes.number.isRequired,
   isFollowing: PropTypes.bool.isRequired,
 };

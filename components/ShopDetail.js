@@ -64,7 +64,7 @@ export default function ShopDetail({ data }) {
   const { width, height } = useWindowDimensions();
   const [imageHeight, setImageHeight] = useState(height);
   useEffect(() => {
-    Image.getSize(data?.avatar, (width, height) => {
+    Image?.getSize(data?.avatar, (width, height) => {
       setImageHeight(height / 5);
     });
   });
@@ -88,17 +88,13 @@ export default function ShopDetail({ data }) {
         </HeaderInfo>
         <ExtreInfo>
           <ShopAdress>
-            <Text
-              style={{ color: "white", fontSize: "15px", fontWeight: "600" }}
-            >
+            <Text style={{ color: "white", fontSize: 15, fontWeight: "600" }}>
               주소
             </Text>
             <AdressMarginText>{data?.adress}</AdressMarginText>
           </ShopAdress>
           <ShopBio>
-            <Text
-              style={{ color: "white", fontSize: "15px", fontWeight: "600" }}
-            >
+            <Text style={{ color: "white", fontSize: 15, fontWeight: "600" }}>
               한줄 소개
             </Text>
             <MarginText>{data?.bio}</MarginText>
