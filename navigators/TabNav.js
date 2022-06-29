@@ -2,6 +2,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 import { colors } from "../colors";
 import StackNavFactory from "./StackNavFactory";
+import { View } from "react-native";
 
 const Tabs = createBottomTabNavigator();
 
@@ -47,6 +48,23 @@ export default function TabNav() {
       >
         {() => <StackNavFactory screenName="Search" />}
       </Tabs.Screen>
+      <Tabs.Screen
+        name="Camera"
+        component={View}
+        listeners={({ navigation }) => {
+          return {
+            tabPress: (e) => {
+              e.preventDefault();
+              navigation.navigate("CreateShop");
+            },
+          };
+        }}
+        options={{
+          tabBarIcon: ({ focused, color, size }) => (
+            <Ionicons name={"camera"} color={color} size={22} />
+          ),
+        }}
+      />
       <Tabs.Screen
         name="TabMe"
         options={{

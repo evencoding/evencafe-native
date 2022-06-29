@@ -1,5 +1,7 @@
 import React from "react";
 import { View, Text } from "react-native";
+import { logUserOut } from "../apollo";
+import AuthButton from "../components/auth/AuthButton";
 
 export default function Me({ navigation }) {
   return (
@@ -12,6 +14,7 @@ export default function Me({ navigation }) {
       }}
     >
       <Text style={{ color: "white" }}>Me</Text>
+      <AuthButton text="Log Out" disabled={false} onPress={logUserOut} />
     </View>
   );
 }

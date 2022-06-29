@@ -7,6 +7,7 @@ import {
 import { setContext } from "@apollo/client/link/context";
 import { offsetLimitPagination } from "@apollo/client/utilities";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { createUploadLink } from "apollo-upload-client";
 
 export const isLoggedInVar = makeVar(false);
 export const tokenVar = makeVar("");
@@ -24,10 +25,14 @@ export const logUserOut = async (token) => {
   tokenVar("");
 };
 
-const httpLink = createHttpLink({
-  // uri: "https://evencafe-backend.herokuapp.com/graphql",
+// const httpLink = createHttpLink({
+//   // uri: "https://evencafe-backend.herokuapp.com/graphql",
+//   uri: "http://localhost:4400/graphql",
+// });
+const uploadHttpLink = createUploadLink({
   uri: "http://localhost:4400/graphql",
 });
+
 const authLink = setContext((_, { headers }) => {
   return {
     headers: {
@@ -38,7 +43,7 @@ const authLink = setContext((_, { headers }) => {
 });
 
 const client = new ApolloClient({
-  link: authLink.concat(httpLink),
+  link: authLink.concat(uploadHttpLink),
   cache: new InMemoryCache({
     typePolicies: {
       Query: {

@@ -6,9 +6,8 @@ import { Asset } from "expo-asset";
 import { NavigationContainer } from "@react-navigation/native";
 import { ApolloProvider, useReactiveVar } from "@apollo/client";
 import client, { isLoggedInVar, TOKEN, tokenVar } from "./apollo";
-import TabNav from "./navigators/TabNav";
-import LoggedOutNav from "./navigators/LoggedOutNav";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import LoggedInNav from "./navigators/LoggedInNav";
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -41,7 +40,7 @@ export default function App() {
   return (
     <ApolloProvider client={client}>
       <NavigationContainer>
-        <TabNav />
+        <LoggedInNav />
       </NavigationContainer>
     </ApolloProvider>
   );

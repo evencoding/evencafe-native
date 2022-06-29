@@ -24,10 +24,10 @@ export default function Logo() {
   return (
     <SLogo>
       <LogoIcon resizeMode="contain" source={require("../assets/logo.png")} />
-      <LogoText>Nomad Coffee</LogoText>
+      <LogoText>Even Coffee</LogoText>
     </SLogo>
   );
 }
 {
-  /* <AuthButton text="Log Out" disabled={false} onPress={logUserOut} /> */
+  // <AuthButton text="Log Out" disabled={false} onPress={logUserOut} />;
 }

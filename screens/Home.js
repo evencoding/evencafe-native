@@ -46,7 +46,7 @@ export default function Home({ navigation }) {
   return (
     <ScreenLayout loading={loading}>
       <FlatList
-        onEndReachedThreshold={0.1}
+        onEndReachedThreshold={0}
         onEndReached={() =>
           fetchMore({
             variables: {
